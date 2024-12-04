@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<head>
+    <title>Ajouter un Panier</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="mb-4">Ajouter un Panier</h2>
+
+    <h:form class="form">
+        <!-- Produit -->
+        <div class="form-group">
+            <label for="produit">Produit</label>
+            <h:selectOneMenu id="produit" value="#{panierBeans.produitId}" class="form-control">
+                <f:selectItems value="#{produitBeans.ListProduits()}" var="prod" itemValue="#{prod.id}" itemLabel="#{prod.nom}" />
+            </h:selectOneMenu>
+        </div>
+
+        <!-- Quantité -->
+        <div class="form-group">
+            <label for="quantite">Quantité</label>
+            <h:inputText id="quantite" value="#{panierBeans.quantite}" class="form-control" required="true" placeholder="Quantité"/>
+        </div>
+
+
+        <!-- Client -->
+        <div class="form-group">
+            <label for="client">Client</label>
+            <h:selectOneMenu id="client" value="#{panierBeans.clientid}" class="form-control">
+                <f:selectItems value="#{clientsBeans.lister()}" var="cli" itemValue="#{cli.id}" itemLabel="#{cli.nom}" />
+            </h:selectOneMenu>
+        </div>
+
+        <!-- Bouton Enregistrer -->
+        <div class="text-center mt-4">
+            <h:commandButton value="Enregistrer" action="#{panierBeans.save}" styleClass="btn btn-success" />
+        </div>
+    </h:form>
+</div>
+</body>
+</html>
